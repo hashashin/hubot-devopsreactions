@@ -16,7 +16,16 @@ module.exports = (robot) ->
   robot.respond /devops me/i, (msg) ->
     randevopsMe robot, (url, title) ->
       msg.send title
-      msg.send url  
+      if robot.adapterName is "telegram"
+        robot.emit 'telegram:invoke', 'sendDocument', {
+          chat_id: msg.envelope.room
+          document: url
+        }, (error, response) ->
+          if error != null
+            robot.logger.error error
+          robot.logger.debug response
+      else
+        msg.send url
 
 randevopsMe = (robot, cb) ->
   robot.http("http://devopsreactions.tumblr.com/random")
