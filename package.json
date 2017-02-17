@@ -5,39 +5,38 @@
   "author": "Emmanuel Pinault <emmanuel.pinault@gmail.com",
   "license": "MIT",
   "homepage": "https://github.com/epinault/hubot-devopsreactions",
-
   "keywords": [
     "hubot",
     "hubot-scripts"
   ],
-
   "engines": {
     "node": ">=0.10.15",
     "npm": ">=1.3.5"
   },
-  
   "repository": {
     "type": "git",
     "url": "git://github.com/epinault/hubot-devopsreactions.git"
   },
-
   "bugs": {
     "url": "https://github.com/epinault/hubot-devopsreactions/issues"
   },
-
   "dependencies": {
-    "hubot":         ">= 2.6.0 < 3.0.0",
+    "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "coffee-script": "~1.12",
-    "cheerio": ""
+    "cheerio": "",
+    "snyk": "^1.25.0"
   },
-
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
     "sinon-chai": "*",
     "sinon": "*"
   },
-
-  "main": "index.coffee"
+  "main": "index.coffee",
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
